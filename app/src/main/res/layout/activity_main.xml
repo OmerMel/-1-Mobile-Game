@@ -81,4 +81,349 @@
         android:textColorHighlight="@color/black"
         tools:text="000" />
 
+    <!-- Column 1 -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="@dimen/img_height"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="50dp">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row1_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row2_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row3_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row4_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row5_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row6_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row7_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row8_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row9_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row10_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row11_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row12_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row13_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row14_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row15_col1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- Column 2 -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="@dimen/img_height"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerHorizontal="true">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row1_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row2_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row3_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row4_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row5_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row6_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row7_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row8_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row9_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row10_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row11_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row12_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row13_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row14_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row15_col2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <!-- Column 3 -->
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="@dimen/img_height"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="50dp">
+
+        <ImageView
+            android:id="@+id/main_IMG_row1_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row2_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row3_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row4_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row5_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row6_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row7_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row8_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row9_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row10_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row11_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row12_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row13_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row14_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/main_IMG_row15_col3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/img_height"
+            android:src="@drawable/cucumber"
+            android:visibility="invisible" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
 </RelativeLayout>
