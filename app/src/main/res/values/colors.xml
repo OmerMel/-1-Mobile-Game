@@ -2,4 +2,9 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="score">#0C2178</color>
+    <color name="score_background">#3E4885</color>
+    <color name="icon_background">#BED6E7FB</color>
+    <color name="icon_color">#1E88E5</color>
+    <color name="rounded_border">#000051</color>
 </resources>
