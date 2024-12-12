@@ -23,6 +23,19 @@ class GameoverActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+
+        val baseSize = 32f // Starting text size in sp
+        val maxLength = 20 // Maximum length of text before resizing
+
+        val adjustedSize = if (msg_LBL_msg.text.length > maxLength) {
+            baseSize - ((msg_LBL_msg.text.length - maxLength) * 0.5f)
+        } else {
+            baseSize
+        }
+
+        msg_LBL_msg.textSize = adjustedSize.coerceAtLeast(12f) // Ensures minimum text size is 12sp
+
+
         val msg = intent.getStringExtra("msg")
         msg_LBL_msg.text = msg
     }
