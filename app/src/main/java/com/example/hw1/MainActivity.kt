@@ -129,7 +129,7 @@ class MainActivity : AppCompatActivity() {
     private fun refreshUI() {
         if (gameManager.isGameOver) { // Lost!
             playJob.cancel()
-            changeActivity("😭Game Over!")
+            changeActivity("😭Stop eat healthy!\nGame Over!")
         } else {
             if(gameManager.injuries != 0)
                 main_IMG_hearts[main_IMG_hearts.size - gameManager.injuries].visibility = View.INVISIBLE
