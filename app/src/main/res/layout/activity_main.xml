@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/white">
+    android:background="#81D4FA">
 
     <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
         android:id="@+id/main_FAB_right_arrow"
@@ -53,7 +53,7 @@
             android:layout_height="@dimen/heart_dimens"
             android:layout_width="0dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/heart"
+            app:srcCompat="@drawable/icon_fries"
             />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -62,7 +62,7 @@
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_marginHorizontal="@dimen/heart_margins"
-            app:srcCompat="@drawable/heart"
+            app:srcCompat="@drawable/icon_fries"
             />
 
         <androidx.appcompat.widget.AppCompatImageView
@@ -70,23 +70,9 @@
             android:layout_height="@dimen/heart_dimens"
             android:layout_width="0dp"
             android:layout_weight="1"
-            app:srcCompat="@drawable/heart"
+            app:srcCompat="@drawable/icon_fries"
             />
     </androidx.appcompat.widget.LinearLayoutCompat>
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/main_LBL_score"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="@dimen/default_margin"
-        android:layout_marginRight="@dimen/default_margin"
-        android:textSize="@dimen/default_text_size"
-        android:textStyle="bold"
-        android:textColor="@color/score"
-        android:background="@drawable/rounded_corner"
-        tools:text="000" />
 
     <!-- Column 1 -->
     <androidx.appcompat.widget.LinearLayoutCompat
