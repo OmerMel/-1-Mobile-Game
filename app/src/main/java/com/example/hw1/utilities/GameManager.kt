@@ -16,7 +16,7 @@ class GameManage(private val lifeCount: Int = 3) {
     val isGameOver: Boolean
         get() = injuries == lifeCount
 
-    fun checkCollision(column: List<AppCompatImageView>, currentCatcherIndex: Int) {
-
+    fun addInjurie() {
+        injuries++
     }
 }
