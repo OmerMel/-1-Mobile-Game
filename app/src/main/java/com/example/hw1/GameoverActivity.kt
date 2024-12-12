@@ -34,7 +34,6 @@ class GameoverActivity : AppCompatActivity() {
 
         msg_LBL_msg.textSize = adjustedSize.coerceAtLeast(12f) // Ensures minimum text size is 12sp
 
-
         val msg = intent.getStringExtra("msg")
         msg_LBL_msg.text = msg
     }

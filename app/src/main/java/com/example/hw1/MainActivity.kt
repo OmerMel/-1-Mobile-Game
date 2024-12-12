@@ -27,7 +27,9 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rightArrow: ExtendedFloatingActionButton
 
     private var currentCatcherIndex = 1
-    private lateinit var playJob: Job
+    private lateinit var newDropJob: Job
+    private lateinit var fallingJob: Job
+    private var timerOn: Boolean = false
     private lateinit var gameManager: GameManage
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -128,7 +130,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun refreshUI() {
         if (gameManager.isGameOver) { // Lost!
-            playJob.cancel()
+            timerOn = false
+            newDropJob.cancel()
+            fallingJob.cancel()
             changeActivity("😭Stop eat healthy!\nGame Over!")
         } else {
             if(gameManager.injuries != 0)
@@ -159,7 +163,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun startRandomDropping() {
         val columns = listOf(column1, column2, column3)
-        playJob = lifecycleScope.launch {
+        newDropJob = lifecycleScope.launch {
             while (isActive) {
                 val randomColumn = columns.random()
                 startFallingObject(randomColumn, columns.indexOf(randomColumn))
@@ -169,7 +173,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startFallingObject(column: List<AppCompatImageView>, columnNumber: Int) {
-        playJob = lifecycleScope.launch {
+        fallingJob = lifecycleScope.launch {
             for (i in column.indices) {
                 if (i == 13 && currentCatcherIndex == columnNumber)
                 {
