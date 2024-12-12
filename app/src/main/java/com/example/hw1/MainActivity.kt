@@ -1,6 +1,7 @@
 package com.example.hw1
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -8,8 +9,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
 import androidx.lifecycle.lifecycleScope
 import com.example.hw1.utilities.GameManage
+import com.example.hw1.utilities.SignalManager
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-import com.google.android.material.textview.MaterialTextView
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
@@ -24,9 +25,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var catcher: List<AppCompatImageView>
     private lateinit var leftArrow: ExtendedFloatingActionButton
     private lateinit var rightArrow: ExtendedFloatingActionButton
-    private lateinit var main_LBL_score: MaterialTextView
 
-    private var currentCatcherIndex = 0
+    private var currentCatcherIndex = 1
     private lateinit var playJob: Job
     private lateinit var gameManager: GameManage
 
@@ -43,7 +43,6 @@ class MainActivity : AppCompatActivity() {
     private fun findViews() {
         leftArrow = findViewById(R.id.main_FAB_left_arrow)
         rightArrow = findViewById(R.id.main_FAB_right_arrow)
-        main_LBL_score = findViewById(R.id.main_LBL_score)
 
         main_IMG_hearts = listOf(
             findViewById(R.id.main_IMG_heart1),
@@ -110,6 +109,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        initCharacter()
         startRandomDropping()
         refreshUI()
 
@@ -118,20 +118,28 @@ class MainActivity : AppCompatActivity() {
         rightArrow.setOnClickListener { v -> moveCatcherRight() }
     }
 
-    private fun checkCollision() {
-        val columns = listOf(column1, column2, column3)
-
+    private fun initCharacter() {
+        catcher[currentCatcherIndex].apply {
+            setImageResource(R.drawable.catcher)
+            visibility = View.VISIBLE
+        }
     }
+
 
     private fun refreshUI() {
         if (gameManager.isGameOver) { // Lost!
-            Log.d("Game Status", "Game Over! " + gameManager.score)
-            //changeActivity("😭Game Over!", gameManager.score)
+            playJob.cancel()
+            changeActivity("😭Game Over!")
         } else {
             if(gameManager.injuries != 0)
                 main_IMG_hearts[main_IMG_hearts.size - gameManager.injuries].visibility = View.INVISIBLE
-            main_LBL_score.text = gameManager.score.toString()
         }
+    }
+
+    private fun changeActivity(msg: String) {
+        val intent = Intent(this, GameoverActivity::class.java)
+        intent.putExtra("msg", msg)
+        startActivity(intent)
     }
 
     private fun moveCatcher(direction: Int) {
@@ -154,15 +162,20 @@ class MainActivity : AppCompatActivity() {
         playJob = lifecycleScope.launch {
             while (isActive) {
                 val randomColumn = columns.random()
-                startFallingObject(randomColumn)
+                startFallingObject(randomColumn, columns.indexOf(randomColumn))
                 delay(3000)
             }
         }
     }
 
-    private fun startFallingObject(column: List<AppCompatImageView>) {
+    private fun startFallingObject(column: List<AppCompatImageView>, columnNumber: Int) {
         playJob = lifecycleScope.launch {
             for (i in column.indices) {
+                if (i == 13 && currentCatcherIndex == columnNumber)
+                {
+                    addCollision()
+                    break
+                }
                 if (i > 0) column[i - 1].visibility = AppCompatImageView.INVISIBLE
                 column[i].visibility = AppCompatImageView.VISIBLE
                 delay(300) // Delay between visibility changes
@@ -170,5 +183,12 @@ class MainActivity : AppCompatActivity() {
             // Make the last item invisible at the end of the animation
             column.last().visibility = AppCompatImageView.INVISIBLE
         }
+    }
+
+    private fun addCollision() {
+        gameManager.addInjurie()
+        SignalManager.getInstance().toast("🤮🤮🤮")
+        SignalManager.getInstance().vibrate()
+        refreshUI()
     }
 }
