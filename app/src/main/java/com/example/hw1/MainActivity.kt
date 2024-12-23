@@ -26,10 +26,11 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rightArrow: ExtendedFloatingActionButton
 
     private var currentCatcherIndex = 1
-    private lateinit var newDropJob: Job
-    private lateinit var fallingJob: Job
+    private lateinit var randomDropJob: Job
+    private lateinit var fallingObjectJob: Job
     private var timerOn: Boolean = false
     private lateinit var gameManager: GameManage
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,6 +39,16 @@ class MainActivity : AppCompatActivity() {
         findViews()
         gameManager = GameManage(main_IMG_hearts.size)
         initViews()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        timerOn = false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        timerOn = true
     }
 
     @SuppressLint("CutPasteId")
@@ -110,6 +121,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initViews() {
+        timerOn = true
         initCharacter()
         startRandomDropping()
         refreshUI()
@@ -126,12 +138,11 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-
     private fun refreshUI() {
         if (gameManager.isGameOver) { // Lost!
             timerOn = false
-            newDropJob.cancel()
-            fallingJob.cancel()
+            randomDropJob.cancel()
+            fallingObjectJob.cancel()
             changeActivity("😭Stop eat healthy!\nGame Over!")
         } else {
             if(gameManager.injuries != 0)
@@ -162,8 +173,9 @@ class MainActivity : AppCompatActivity() {
 
     private fun startRandomDropping() {
         val columns = listOf(column1, column2, column3)
-        newDropJob = lifecycleScope.launch {
-            while (isActive) {
+        randomDropJob = lifecycleScope.launch {
+
+            while (isActive && timerOn) {
                 val randomColumn = columns.random()
                 startFallingObject(randomColumn, columns.indexOf(randomColumn))
                 delay(3000)
@@ -172,21 +184,38 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startFallingObject(column: List<AppCompatImageView>, columnNumber: Int) {
-        fallingJob = lifecycleScope.launch {
-            for (i in column.indices) {
-                if (i == 13 && currentCatcherIndex == columnNumber)
-                {
+        var currentFallingPosition = 0
+        fallingObjectJob = lifecycleScope.launch {
+            while (currentFallingPosition < column.size && isActive) {
+                if (!timerOn) {
+                    delay(100)
+                    continue
+                }
+
+                // Check for collision
+                if (currentFallingPosition == 13 && currentCatcherIndex == columnNumber) {
                     addCollision()
                     break
                 }
-                if (i > 0) column[i - 1].visibility = AppCompatImageView.INVISIBLE
-                column[i].visibility = AppCompatImageView.VISIBLE
-                delay(300) // Delay between visibility changes
+
+                // Clear previous position
+                if (currentFallingPosition > 0) {
+                    column[currentFallingPosition - 1].visibility = AppCompatImageView.INVISIBLE
+                }
+
+                // Show current position
+                column[currentFallingPosition].visibility = AppCompatImageView.VISIBLE
+
+                delay(300)
+                currentFallingPosition++
             }
-            // Make the last item invisible at the end of the animation
+
+            // Clean up at the end
             column.last().visibility = AppCompatImageView.INVISIBLE
         }
     }
+
+
 
     private fun addCollision() {
         gameManager.addInjurie()
