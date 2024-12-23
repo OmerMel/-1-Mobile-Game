@@ -40,6 +40,7 @@
         />
 
     <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/main_IMG_hearts"
         android:layout_width="@dimen/hearts_layout_width"
         android:layout_height="@dimen/heart_dimens"
         android:layout_alignParentTop="true"
@@ -312,7 +313,7 @@
         android:layout_alignParentRight="true"
         android:layout_marginRight="50dp">
 
-        <ImageView
+        <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/main_IMG_row1_col3"
             android:layout_width="match_parent"
             android:layout_height="@dimen/img_height"
@@ -418,5 +419,4 @@
             android:visibility="invisible" />
 
     </androidx.appcompat.widget.LinearLayoutCompat>
-
 </RelativeLayout>
