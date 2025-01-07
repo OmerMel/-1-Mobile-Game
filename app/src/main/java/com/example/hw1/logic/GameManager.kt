@@ -16,4 +16,8 @@ class GameManage(private val lifeCount: Int = 3) {
     fun addInjurie() {
         injuries++
     }
+
+    fun addScore(amount: Int){
+        score = 0.coerceAtLeast(score + amount)
+    }
 }

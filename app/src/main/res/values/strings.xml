@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">Kid VS Food</string>
+    <string name="mainMenu_startGame_txt">Start Game</string>
+    <string name="mainMenu_sensorMode_txt">Sensors</string>
+    <string name="mainMenu_buttonsMode_txt">Buttons</string>
+    <string name="mainMenu_difficultyHard_txt">Hard</string>
+    <string name="mainMenu_difficultyEasy_txt">Easy</string>
+    <string name="mainMenu_LBL_txt">KID VS FOOD</string>
+    <string name="main_menu_leaderBoard_txt">Leaderboard</string>
 </resources>

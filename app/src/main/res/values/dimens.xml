@@ -10,4 +10,8 @@
     <dimen name="icon_size">50dp</dimen>
     <dimen name="catcher_height">100dp</dimen>
     <dimen name="gameover_text_size">80sp</dimen>
+    <dimen name="left_space_length">42dp</dimen>
+    <dimen name="mainMenu_textSize">50sp</dimen>
+    <dimen name="margin_mainText">50dp</dimen>
+    <dimen name="margin_txt_to_switch">8dp</dimen>
 </resources>
