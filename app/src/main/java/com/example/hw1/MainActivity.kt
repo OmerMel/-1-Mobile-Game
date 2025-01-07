@@ -285,7 +285,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun startFallingObject(column: List<AppCompatImageView>, columnIndex: Int, fallingObject: FallingObject) {
         var currentFallingPosition = 0
-        var collisionFlag = false
         fallingObjectJob = lifecycleScope.launch {
             while (currentFallingPosition < column.size && isActive) {
                 if (!timerOn) {
@@ -295,9 +294,6 @@ class MainActivity : AppCompatActivity() {
 
                 if (currentFallingPosition == 13 && currentCatcherIndex == columnIndex) {
                     handleCollision(fallingObject.type)
-                    column[currentFallingPosition].setImageResource(R.drawable.catcher)
-                    collisionFlag = true
-                    Log.d("FallingObject", "Falling object at position $currentFallingPosition with type ${fallingObject.type}")
                     break
                 }
 
@@ -307,11 +303,8 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
 
-                if(!collisionFlag){
-                    column[currentFallingPosition].visibility = View.VISIBLE
-                    column[currentFallingPosition].setImageResource(fallingObject.type.imageResource)
-                    collisionFlag = false
-                }
+                column[currentFallingPosition].visibility = View.VISIBLE
+                column[currentFallingPosition].setImageResource(fallingObject.type.imageResource)
 
                 val currentDelay = delayFallingSpeed
                 delay(currentDelay)

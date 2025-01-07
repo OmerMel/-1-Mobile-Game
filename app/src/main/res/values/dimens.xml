@@ -14,4 +14,5 @@
     <dimen name="mainMenu_textSize">50sp</dimen>
     <dimen name="margin_mainText">50dp</dimen>
     <dimen name="margin_txt_to_switch">8dp</dimen>
+    <dimen name="gameover_padding">10dp</dimen>
 </resources>
