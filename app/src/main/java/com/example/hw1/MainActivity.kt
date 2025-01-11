@@ -49,7 +49,6 @@ class MainActivity : AppCompatActivity() {
     private var delayFallingSpeed: Long = 300
     private var delaySpawnSpeed: Long = 3000
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -192,8 +191,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun calculateGameSpeed() {
-        delayFallingSpeed = difficulty.fallingSpeed.toLong() + (tiltDetector.tiltYValue.toLong() * 7)
-        delaySpawnSpeed = difficulty.spawnSpeed.toLong() + (tiltDetector.tiltYValue.toLong() * 10)
+        if(::tiltDetector.isInitialized){
+            delayFallingSpeed = difficulty.fallingSpeed.toLong() + (tiltDetector.tiltYValue.toLong() * 7)
+            delaySpawnSpeed = difficulty.spawnSpeed.toLong() + (tiltDetector.tiltYValue.toLong() * 10)
+        } else {
+            delayFallingSpeed = difficulty.fallingSpeed.toLong()
+            delaySpawnSpeed = difficulty.spawnSpeed.toLong()
+
+        }
     }
 
     private fun initGameMode() {
@@ -248,8 +253,12 @@ class MainActivity : AppCompatActivity() {
 
     private fun changeActivity(msg: String) {
         val intent = Intent(this, GameoverActivity::class.java)
-        intent.putExtra("msg", msg)
+        val bundle = Bundle()
+        bundle.putInt("score", gameManager.score)
+        bundle.putString("msg", msg)
+        intent.putExtras(bundle)
         startActivity(intent)
+        finish()
     }
 
     private fun moveCatcher(direction: Int) {
@@ -284,39 +293,42 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun startFallingObject(column: List<AppCompatImageView>, columnIndex: Int, fallingObject: FallingObject) {
-        var currentFallingPosition = 0
+        val fallingObjectImageView = column[0]
+
+        // Set the image resource and make the falling object visible
+        fallingObjectImageView.setImageResource(fallingObject.type.imageResource)
+        fallingObjectImageView.visibility = View.VISIBLE
+
         fallingObjectJob = lifecycleScope.launch {
-            while (currentFallingPosition < column.size && isActive) {
-                if (!timerOn) {
-                    delay(100)
-                    continue
+            for (i in column.indices) {
+                delay(delayFallingSpeed)
+
+                if (i > 0) {
+                    column[i - 1].visibility = View.INVISIBLE
                 }
 
-                if (currentFallingPosition == 13 && currentCatcherIndex == columnIndex) {
-                    handleCollision(fallingObject.type)
-                    break
+                column[i].apply {
+                    setImageResource(fallingObject.type.imageResource)
+                    visibility = View.VISIBLE
                 }
 
-                if (currentFallingPosition > 0) {
-                    column[currentFallingPosition - 1].apply {
-                        visibility = View.INVISIBLE
+                // Check if we have reached row 13 (catcher row) to check for a collision
+                if (i == 12) {
+                    if (fallingObject.columnIndex == currentCatcherIndex) {
+                        handleCollision(fallingObject.type)
+
+                        catcher[currentCatcherIndex].setImageResource(R.drawable.catcher)
+                        catcher[currentCatcherIndex].visibility = View.VISIBLE
+                        return@launch
                     }
                 }
 
-                column[currentFallingPosition].visibility = View.VISIBLE
-                column[currentFallingPosition].setImageResource(fallingObject.type.imageResource)
-
-                val currentDelay = delayFallingSpeed
-                delay(currentDelay)
-                currentFallingPosition++
+                if (i == column.size - 1) {
+                    column[i].visibility = View.INVISIBLE
+                }
             }
-
-            // Clean up at the end
-            column.last().visibility = AppCompatImageView.INVISIBLE
         }
     }
-
-
 
     private fun handleCollision(type: FallingObjectType) {
         when (type.effect) {

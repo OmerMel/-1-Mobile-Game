@@ -1,41 +1,37 @@
 package com.example.hw1
 
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.textview.MaterialTextView
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
+import com.example.hw1.fragments.LeaderboardFragment
 
 class GameoverActivity : AppCompatActivity() {
-
-    private lateinit var msg_LBL_msg: MaterialTextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_gameover)
 
-        findViews()
-        initViews()
+        init()
+        loadLeaderboardFragment()
+    }
+
+    private fun init() {
+        val bundle = intent.extras
+        val score = bundle?.getInt("score")
+        val msg = bundle?.getString("msg")
     }
 
 
-    private fun findViews() {
-        msg_LBL_msg = findViewById(R.id.msg_LBL_msg)
-    }
 
-    private fun initViews() {
+    private fun loadLeaderboardFragment() {
+        val fragmentManager: FragmentManager = supportFragmentManager
+        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
 
-        val baseSize = 32f // Starting text size in sp
-        val maxLength = 20 // Maximum length of text before resizing
-
-        val adjustedSize = if (msg_LBL_msg.text.length > maxLength) {
-            baseSize - ((msg_LBL_msg.text.length - maxLength) * 0.5f)
-        } else {
-            baseSize
-        }
-
-        msg_LBL_msg.textSize = adjustedSize.coerceAtLeast(12f) // Ensures minimum text size is 12sp
-
-        val msg = intent.getStringExtra("msg")
-        msg_LBL_msg.text = msg
+        val leaderboardFragment = LeaderboardFragment()
+        fragmentTransaction.replace(R.id.leaderboard_frame, leaderboardFragment)
+        fragmentTransaction.commit()
     }
 
 }

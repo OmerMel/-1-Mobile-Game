@@ -7,4 +7,7 @@
     <string name="mainMenu_difficultyEasy_txt">Easy</string>
     <string name="mainMenu_LBL_txt">KID VS FOOD</string>
     <string name="main_menu_leaderBoard_txt">Leaderboard</string>
+    <string name="leaderboard_secondPlace_txt">Second Place</string>
+    <string name="leaderboard_firstPlace_txt">First Place</string>
+    <string name="leaderboard_thirdPlace_txt">Third Place</string>
 </resources>
