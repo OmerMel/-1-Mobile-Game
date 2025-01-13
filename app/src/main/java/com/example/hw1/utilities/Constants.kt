@@ -3,7 +3,7 @@ package com.example.hw1.utilities
 class Constants {
 
     object Leaderboard {
-        const val PREFS_NAME = "leaderboard_prefs"
-        const val SCORES_KEY = "scores"
+        const val LEADERBOARD_KEY = "leaderboard"
+        const val VALID_KEY = "valid"
     }
 }

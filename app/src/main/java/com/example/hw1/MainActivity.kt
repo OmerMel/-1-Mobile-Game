@@ -3,8 +3,6 @@ package com.example.hw1
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.text.BoringLayout
-import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatImageView
@@ -15,6 +13,7 @@ import com.example.hw1.enums.FallingObjectType
 import com.example.hw1.enums.GameEffect
 import com.example.hw1.logic.GameManage
 import com.example.hw1.enums.ModeEnum
+import com.example.hw1.utilities.Constants
 import com.example.hw1.utilities.FallingObject
 import com.example.hw1.utilities.SignalManager
 import com.example.hw1.utilities.TiltDetector
@@ -46,6 +45,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var gameManager: GameManage
     private var difficulty: DifficultyEnum = DifficultyEnum.EASY
     private var mode: ModeEnum = ModeEnum.BUTTONS
+    private var name: String? = null
     private var delayFallingSpeed: Long = 300
     private var delaySpawnSpeed: Long = 3000
 
@@ -53,8 +53,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        difficulty = DifficultyEnum.entries[intent.getIntExtra("difficulty", 0)]
-        mode = ModeEnum.entries[intent.getIntExtra("mode", 0)]
+        val bundle = intent.extras
+        difficulty = DifficultyEnum.entries[bundle?.getInt("difficulty") ?: 0]
+        mode = ModeEnum.entries[bundle?.getInt("mode") ?: 0]
+        name = bundle?.getString("name")
 
         findViews()
         gameManager = GameManage(main_IMG_hearts.size)
@@ -243,7 +245,7 @@ class MainActivity : AppCompatActivity() {
             timerOn = false
             randomDropJob.cancel()
             fallingObjectJob.cancel()
-            changeActivity("😭Stop eat healthy!\nGame Over!")
+            changeActivity()
         } else {
             if(gameManager.injuries != 0)
                 main_IMG_hearts[main_IMG_hearts.size - gameManager.injuries].visibility = View.INVISIBLE
@@ -251,11 +253,12 @@ class MainActivity : AppCompatActivity() {
         gameManager.score.toString().also { score.text = it }
     }
 
-    private fun changeActivity(msg: String) {
-        val intent = Intent(this, GameoverActivity::class.java)
+    private fun changeActivity() {
+        val intent = Intent(this, GameOverActivity::class.java)
         val bundle = Bundle()
         bundle.putInt("score", gameManager.score)
-        bundle.putString("msg", msg)
+        bundle.putString("name", name)
+        bundle.putString("Validation", Constants.Leaderboard.VALID_KEY)
         intent.putExtras(bundle)
         startActivity(intent)
         finish()

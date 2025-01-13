@@ -11,12 +11,12 @@ enum class FallingObjectType (
     CUCUMBER(
         imageResource = R.drawable.cucumber,
         points = -1,
-        probability = 0.6,
+        probability = 0.4,
         effect = GameEffect.DAMAGE
     ),
     HAMBURGER(
         imageResource = R.drawable.burger,
-        points = 1,
+        points = 10,
         probability = 0.9,
         effect = GameEffect.NONE
     );

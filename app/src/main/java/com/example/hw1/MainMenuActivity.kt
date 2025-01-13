@@ -1,13 +1,20 @@
 package com.example.hw1
 
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.appcompat.widget.SwitchCompat
+import androidx.lifecycle.ReportFragment.Companion.reportFragment
 import com.example.hw1.enums.DifficultyEnum
 import com.example.hw1.enums.ModeEnum
+import com.example.hw1.utilities.Constants
+import com.example.hw1.utilities.SharedPreferencesManager
+import com.google.android.material.textfield.TextInputEditText
+import kotlin.text.clear
 
 class MainMenuActivity: AppCompatActivity() {
 
@@ -22,9 +29,20 @@ class MainMenuActivity: AppCompatActivity() {
 
     private lateinit var main_menu_BTN_start: AppCompatButton
 
+    private lateinit var main_menu_BTN_leaderboard: AppCompatButton
+
+    private lateinit var main_menu_EDT_name: TextInputEditText
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main_menu)
+
+//        val sharedPreferences: SharedPreferences =
+//            getSharedPreferences(Constants.Leaderboard.LEADERBOARD_KEY, Context.MODE_PRIVATE) // Replace with your prefs name
+//
+//        val editor = sharedPreferences.edit()
+//        editor.clear()
+//        editor.apply() // Use apply for background commit
 
         findViews()
         initViews()
@@ -35,6 +53,8 @@ class MainMenuActivity: AppCompatActivity() {
         main_menu_SWITCH_mode = findViewById(R.id.main_menu_SWITCH_mode)
         main_menu_LBL_welcome = findViewById(R.id.main_menu_LBL_welcome)
         main_menu_BTN_start = findViewById(R.id.main_menu_BTN_start)
+        main_menu_BTN_leaderboard = findViewById(R.id.main_menu_BTN_leaderboard)
+        main_menu_EDT_name = findViewById(R.id.main_menu_EDT_name)
     }
 
     private fun initViews() {
@@ -54,12 +74,21 @@ class MainMenuActivity: AppCompatActivity() {
         }
 
         main_menu_BTN_start.setOnClickListener { startGame() }
+        main_menu_BTN_leaderboard.setOnClickListener { showLeaderboard() }
+    }
+
+    private fun showLeaderboard() {
+        val intent = Intent(this, GameOverActivity::class.java)
+        startActivity(intent)
     }
 
     private fun startGame() {
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("difficulty", difficultyEnum.ordinal)
-        intent.putExtra("mode", modeEnum.ordinal)
+        val bundle = Bundle()
+        bundle.putString("name", main_menu_EDT_name.text.toString())
+        bundle.putInt("difficulty", difficultyEnum.ordinal)
+        bundle.putInt("mode", modeEnum.ordinal)
+        intent.putExtras(bundle)
         startActivity(intent)
         finish()
     }

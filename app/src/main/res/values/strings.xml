@@ -10,4 +10,5 @@
     <string name="leaderboard_secondPlace_txt">Second Place</string>
     <string name="leaderboard_firstPlace_txt">First Place</string>
     <string name="leaderboard_thirdPlace_txt">Third Place</string>
+    <string name="input_preview_text">Enter Your Name:</string>
 </resources>

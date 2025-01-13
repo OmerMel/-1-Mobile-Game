@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatTextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/main_menu_LBL_welcome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -14,6 +14,16 @@
         android:layout_above="@id/main_menu_LLC_difficulty"
         android:layout_centerInParent="true"
         android:layout_marginBottom="@dimen/margin_mainText"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/main_menu_EDT_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/main_menu_LLC_difficulty"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/input_preview_text"/>
 
     <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/main_menu_LLC_difficulty"
@@ -82,5 +92,7 @@
         android:text="@string/main_menu_leaderBoard_txt"
         android:layout_below="@id/main_menu_BTN_start"
         android:layout_centerInParent="true" />
+
+
 
 </RelativeLayout>
