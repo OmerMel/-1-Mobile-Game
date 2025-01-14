@@ -1,0 +1,17 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#1A1A2E">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/leaderboard_RV_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        tools:listitem="@layout/score_item">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+</RelativeLayout>

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/main_menu_LBL_welcome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mainMenu_LBL_txt"
+        android:textStyle="bold"
+        android:textSize="@dimen/mainMenu_textSize"
+        android:layout_above="@id/main_menu_LLC_difficulty"
+        android:layout_centerInParent="true"
+        android:layout_marginBottom="@dimen/margin_mainText"/>
+
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/main_menu_EDT_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_above="@+id/main_menu_LLC_difficulty"
+        android:ems="10"
+        android:inputType="text"
+        android:hint="@string/input_preview_text"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/main_menu_LLC_difficulty"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_txt_to_switch"
+            android:text="@string/mainMenu_difficultyEasy_txt" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/main_menu_SWITCH_difficulty"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_txt_to_switch"
+            android:text="@string/mainMenu_difficultyHard_txt" />
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:id="@+id/main_menu_LLC_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_below="@id/main_menu_LLC_difficulty">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/margin_txt_to_switch"
+            android:text="@string/mainMenu_buttonsMode_txt" />
+
+        <com.google.android.material.materialswitch.MaterialSwitch
+            android:id="@+id/main_menu_SWITCH_mode"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/main_menu_SWITCH_difficulty"
+            android:layout_centerInParent="true"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_txt_to_switch"
+            android:text="@string/mainMenu_sensorMode_txt" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/main_menu_BTN_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/mainMenu_startGame_txt"
+        android:layout_below="@id/main_menu_LLC_mode"
+        android:layout_centerInParent="true" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/main_menu_BTN_leaderboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/main_menu_leaderBoard_txt"
+        android:layout_below="@id/main_menu_BTN_start"
+        android:layout_centerInParent="true" />
+
+
+
+</RelativeLayout>
