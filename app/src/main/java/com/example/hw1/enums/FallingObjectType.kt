@@ -6,19 +6,22 @@ enum class FallingObjectType (
     val imageResource: Int,
     val points: Int,
     val probability: Double,
-    val effect: GameEffect
+    val effect: GameEffect,
+    val sound: Int
 ) {
     CUCUMBER(
         imageResource = R.drawable.cucumber,
         points = -1,
         probability = 0.4,
-        effect = GameEffect.DAMAGE
+        effect = GameEffect.DAMAGE,
+        sound = R.raw.spew
     ),
     HAMBURGER(
         imageResource = R.drawable.burger,
         points = 10,
         probability = 0.9,
-        effect = GameEffect.NONE
+        effect = GameEffect.NONE,
+        sound = R.raw.eating_sound
     );
 
     companion object {

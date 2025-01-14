@@ -16,6 +16,7 @@ import com.example.hw1.enums.ModeEnum
 import com.example.hw1.utilities.Constants
 import com.example.hw1.utilities.FallingObject
 import com.example.hw1.utilities.SignalManager
+import com.example.hw1.utilities.SingleSoundPlayer
 import com.example.hw1.utilities.TiltDetector
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
 import com.google.android.material.textview.MaterialTextView
@@ -37,6 +38,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var rightArrow: ExtendedFloatingActionButton
     private lateinit var score: MaterialTextView
 
+    private var ssp: SingleSoundPlayer? = null
+
     private lateinit var tiltDetector: TiltDetector
     private var currentCatcherIndex = 3
     private lateinit var randomDropJob: Job
@@ -52,6 +55,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        ssp = SingleSoundPlayer(this)
 
         val bundle = intent.extras
         difficulty = DifficultyEnum.entries[bundle?.getInt("difficulty") ?: 0]
@@ -341,9 +345,11 @@ class MainActivity : AppCompatActivity() {
                 SignalManager.getInstance().toast("🤮")
             }
             GameEffect.NONE -> {
-                gameManager.addScore(type.points)
+
             }
         }
+        gameManager.addScore(type.points)
+        ssp?.playSound(type.sound)
         SignalManager.getInstance().vibrate()
         refreshUI()
     }
