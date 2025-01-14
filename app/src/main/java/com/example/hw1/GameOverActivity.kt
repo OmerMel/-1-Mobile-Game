@@ -23,6 +23,7 @@ class GameOverActivity : AppCompatActivity() {
     private var validation : String? = null
     private var currentLatitude: Double? = null  // Add these to store location
     private var currentLongitude: Double? = null
+    private var shouldSaveScore: Boolean = false
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private var mapFragment: MapFragment? = null
@@ -33,11 +34,10 @@ class GameOverActivity : AppCompatActivity() {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this)
 
-
         init()
         checkLocationPermissions()
         loadMapFragment()
-        loadLeaderboardFragment()
+
     }
 
     private fun init() {
@@ -45,6 +45,7 @@ class GameOverActivity : AppCompatActivity() {
         score = bundle?.getInt("score")
         name = bundle?.getString("name")
         validation = bundle?.getString("Validation")
+        shouldSaveScore = validation == Constants.Leaderboard.VALID_KEY
     }
 
     private fun loadMapFragment() {
@@ -100,16 +101,16 @@ class GameOverActivity : AppCompatActivity() {
                                 currentLongitude = location.longitude
                             }
                             mapFragment?.arguments = bundle
-                            // Also update map directly if it's already loaded
-                            Log.d("Location - getCurrentLocation", "Updating map with location: $currentLatitude $currentLongitude")
-                            mapFragment?.addMarker(location.latitude, location.longitude, "$name: ${score ?: 0}")
+                            loadLeaderboardFragment()
                         } else {
                             // Handle null location
                             Log.d("Location", "Location is null")
+                            loadLeaderboardFragment()
                         }
                     }
                     .addOnFailureListener { e ->
                         Log.e("Location", "Error getting location", e)
+                        loadLeaderboardFragment()
                     }
             }
         } catch (e: SecurityException) {
@@ -123,8 +124,8 @@ class GameOverActivity : AppCompatActivity() {
         bundle.putInt("score", score ?: 0)
         bundle.putString("name", name)
         bundle.putString("Validation", validation)
-        currentLatitude?.let { bundle.putDouble("latitude", it) }
-        currentLongitude?.let { bundle.putDouble("longitude", it) }
+        bundle.putDouble("latitude", currentLatitude ?: 0.0)
+        bundle.putDouble("longitude", currentLongitude ?: 0.0)
         leaderboardFragment.arguments = bundle
         Log.d("Location - loadLeaderboardFragment", "Latitude: $currentLatitude, Longitude: $currentLongitude")
 

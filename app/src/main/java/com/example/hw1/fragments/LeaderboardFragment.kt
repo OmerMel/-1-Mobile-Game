@@ -23,15 +23,9 @@ class LeaderboardFragment : Fragment() {
     private lateinit var leaderboardRecyclerView: RecyclerView
     private var sharedPreferencesManager: SharedPreferencesManager = SharedPreferencesManager.getInstance()
     private val leaderboard = sharedPreferencesManager.getLeaderboard(Constants.Leaderboard.LEADERBOARD_KEY).toMutableList()
-    private var currentLatitude: Double? = null
-    private var currentLongitude: Double? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            currentLatitude = it.getDouble("latitude")
-            currentLongitude = it.getDouble("longitude")
-        }
     }
 
     override fun onCreateView(
@@ -46,15 +40,17 @@ class LeaderboardFragment : Fragment() {
         val name = arguments?.getString("name") ?: "Unknown"
         val score = arguments?.getInt("score") ?: 0
         val validation = arguments?.getString("Validation")
+        val currentLatitude = arguments?.getDouble("latitude")
+        val currentLongitude = arguments?.getDouble("longitude")
 
         if(validation == Constants.Leaderboard.VALID_KEY)
-            updateLeaderboard(name, score)
+            updateLeaderboard(name, score, currentLatitude, currentLongitude)
 
         setupRecyclerView(leaderboard)
         return view
     }
 
-    private fun updateLeaderboard(name: String, score: Int) {
+    private fun updateLeaderboard(name: String, score: Int, currentLatitude: Double? = null, currentLongitude: Double? = null) {
         val currentDate = getCurrentDate()
 
         // Create new entry with location
@@ -107,6 +103,7 @@ class LeaderboardFragment : Fragment() {
                     // Find the MapFragment and move camera to location
                     val mapFragment = parentFragmentManager.findFragmentById(R.id.map_frame) as? MapFragment
                     mapFragment?.moveToLocation(lat, lng, "${scoreEntry.name}: ${scoreEntry.score}")
+                    mapFragment?.addMarker(lat, lng, "${scoreEntry.name}: ${scoreEntry.score}")
                 }
             }
         }
